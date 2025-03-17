@@ -53,17 +53,6 @@ pip install -r requirements.txt
 - **Support Vector Machine (SVM)**
 - **Random Forest Regressor**
 
-### Results:
-| Model | Mean Squared Error (MSE) | R² Score |
-|--------|----------------|-----------|
-| Linear Regression | 0.1879 | 0.0235 |
-| SVM | 0.6981 | -2.6273 |
-| Random Forest | 0.0126 | -0.1832 |
-
-- **Linear Regression:** Shows a reasonable MSE, indicating it captures some patterns in the data. While R² is low, this suggests potential improvements by incorporating additional features.
-- **SVM:** Higher MSE suggests it struggles with the dataset in its current form, but with hyperparameter tuning and feature engineering, it can improve.
-- **Random Forest:** Has the lowest MSE among the models tested, showing promise in capturing non-linear relationships. Further tuning could enhance its predictive power.
-
 ## Notebook 2: Deep Learning with LSTM
 ### Data Preprocessing:
 - The dataset was processed similarly to Notebook 1.
@@ -76,16 +65,6 @@ pip install -r requirements.txt
 - **Loss Function**: Mean Squared Error (MSE).
 - **Optimizer**: Adam.
 - **Hyperparameter Tuning**: Using `keras_tuner`.
-
-### Results:
-| Metric | Value |
-|-------------|----------------|
-| MSE | 0.9675 |
-| RMSE | 0.9836 |
-| MAE | 0.8224 |
-
-These results demonstrate the model's ability to learn from historical earthquake data. While there is room for improvement, LSTM networks have shown potential for capturing trends in seismic activity. Future refinements, such as incorporating additional geophysical features and fine-tuning hyperparameters, can further enhance accuracy.
-
 
 ## Visualizations
 The project includes various visualizations:
@@ -107,6 +86,54 @@ The project includes various visualizations:
    ```
 4. Run **Earthquake_Prediction_Project.ipynb** for traditional ML models.
 5. Run **LSTM_Model.ipynb** for LSTM-based deep learning predictions.
+
+# **Final Model Rankings for Earthquake Prediction**
+
+Based on **Mean Squared Error (MSE)** and **R² Score**, here are the final results:
+
+| **Model**             | **MSE**   | **R² Score**    | **Ranking (Best to Worst)** |
+|-----------------------|----------|---------------|----------------------|
+| **Random Forest**     | **0.0126**   | **-0.1832**    | 🥇 (Best) |
+| **Naïve Bayes**       | **0.0174**   | **-0.6337**    | 🥈 (Surprisingly strong) |
+| **Decision Tree**     | **0.0287**   | **-1.6939**    | 🥉 (Overfitting detected) |
+| **Linear Regression** | **0.1879**   | **0.0235**     | 🏅 (Decent for simple cases) |
+| **LSTM (Deep Learning)** | **0.9675**   | *N/A*        | 🚧 (Potential, but underperforms) |
+| **SVM (Support Vector Machine)** | **0.6981**   | **-2.6273**   | ❌ (Worst performance) |
+
+---
+
+## **Analysis & Conclusion**
+### **🏆 Random Forest is the Best Model**
+- It has the **lowest MSE (0.0126)** and the **highest R² (-0.1832)**.
+- Handles **non-linear relationships** well and prevents **overfitting** by using multiple decision trees.
+
+### **📈 Naïve Bayes Performs Surprisingly Well**
+- Despite being a simple probabilistic model, its **MSE (0.0174)** is better than Decision Trees and even Linear Regression!
+- This suggests that **categorical classification of earthquake magnitudes may work well** with a probabilistic approach.
+
+### **🌳 Decision Tree Shows Overfitting**
+- Its **MSE (0.0287)** is higher than Naïve Bayes and RF, and **R² (-1.6939)** indicates a poor fit.
+- This suggests **overfitting**, meaning the tree is memorizing the training data instead of generalizing well.
+
+### **📉 Linear Regression is Decent**
+- **MSE (0.1879)** is high, but its **R² (0.0235)** is **better than Decision Trees and SVM**.
+- Works for simple linear relationships, but earthquakes are highly non-linear!
+
+### **🤖 LSTM Needs Improvement**
+- **MSE (0.9675)** is the highest, meaning it struggled to make accurate predictions.
+- This suggests that **deep learning needs more data, better tuning, or alternative architectures** (e.g., CNN-LSTM).
+
+### **❌ SVM is the Worst Model**
+- **MSE (0.6981)** and **R² (-2.6273)** are terrible.
+- This confirms that **SVM is not suitable for earthquake magnitude prediction**.
+
+---
+
+## **Final Recommendation**
+🚀 **For the best performance, use Random Forest.**  
+📊 If computational resources are limited, **Naïve Bayes is a solid alternative.**  
+🔍 If decision interpretability is key, **Decision Trees with pruning may improve results.**  
+🤖 If using deep learning, **LSTM needs hyperparameter tuning & more data** to be competitive.  
 
 ## Conclusion
 Among traditional machine learning models, **Linear Regression had the best R² score, meaning it explained the most variance**, while **Random Forest had the lowest MSE, indicating the least absolute error**. However, both models had limited predictive power, suggesting that earthquake magnitude prediction is highly complex and may require more advanced techniques.
