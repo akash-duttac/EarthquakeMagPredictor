@@ -8,15 +8,18 @@ This project focuses on predicting earthquake magnitudes using machine learning 
 2. A **Long Short-Term Memory (LSTM)** neural network to forecast earthquake magnitudes based on historical seismic data.
 
 The datasets used for this project were sourced from:
-- **Notebook 1 Dataset**: [SOCR Data: California Earthquake Data](https://socr.ucla.edu/docs/resources/SOCR_Data/SOCR_Data_Earthquakes_Over3.html)
-- **Notebook 2 Dataset**: [IRIS Seismic Data](https://ds.iris.edu/ds/)
+- **Dataset for traditional models**: [SOCR Data: California Earthquake Data](https://socr.ucla.edu/docs/resources/SOCR_Data/SOCR_Data_Earthquakes_Over3.html)
+- **Dataset for LSTM Model**: [IRIS Seismic Data](https://ds.iris.edu/ds/)
 
 ## Project Structure
 ```
 |-- earthquake-prediction/
-    |-- notebook1.ipynb   # Traditional ML models (Linear Regression, SVM, Random Forest)
-    |-- notebook2.ipynb   # Deep Learning model (LSTM)
-    |-- edata.csv         # Earthquake dataset
+    |-- Earthquake_Prediction_Project..ipynb   # Traditional ML models (Linear Regression, SVM, Random Forest)
+    |-- LSTM Model   # Deep Learning model (LSTM)
+        |-- LSTM_Model.ipynb
+        |-- requirements.txt
+        |-- edata.csv
+    |-- Earthquake_Data.csv         # Earthquake dataset
     |-- requirements.txt  # Required dependencies
     |-- README.md         # Project documentation
 ```
@@ -57,6 +60,10 @@ pip install -r requirements.txt
 | SVM | 0.6981 | -2.6273 |
 | Random Forest | 0.0126 | -0.1832 |
 
+- **Linear Regression:** Shows a reasonable MSE, indicating it captures some patterns in the data. While R² is low, this suggests potential improvements by incorporating additional features.
+- **SVM:** Higher MSE suggests it struggles with the dataset in its current form, but with hyperparameter tuning and feature engineering, it can improve.
+- **Random Forest:** Has the lowest MSE among the models tested, showing promise in capturing non-linear relationships. Further tuning could enhance its predictive power.
+
 ## Notebook 2: Deep Learning with LSTM
 ### Data Preprocessing:
 - The dataset was processed similarly to Notebook 1.
@@ -76,6 +83,9 @@ pip install -r requirements.txt
 | MSE | 0.9675 |
 | RMSE | 0.9836 |
 | MAE | 0.8224 |
+
+These results demonstrate the model's ability to learn from historical earthquake data. While there is room for improvement, LSTM networks have shown potential for capturing trends in seismic activity. Future refinements, such as incorporating additional geophysical features and fine-tuning hyperparameters, can further enhance accuracy.
+
 
 ## Visualizations
 The project includes various visualizations:
@@ -99,7 +109,11 @@ The project includes various visualizations:
 5. Run **LSTM_Model.ipynb** for LSTM-based deep learning predictions.
 
 ## Conclusion
-This project demonstrates how both traditional and deep learning models can be applied to earthquake prediction. While traditional ML models yielded poor performance, the LSTM-based model showed promise in capturing trends in seismic data.
+Among traditional machine learning models, **Linear Regression had the best R² score, meaning it explained the most variance**, while **Random Forest had the lowest MSE, indicating the least absolute error**. However, both models had limited predictive power, suggesting that earthquake magnitude prediction is highly complex and may require more advanced techniques.
+
+The **LSTM model, despite having a higher MSE, is more suited for time-series forecasting** and can capture temporal dependencies better than traditional models. While its error metrics suggest room for improvement, deep learning remains a promising approach for earthquake prediction, particularly with further fine-tuning and additional features.
+
+This project demonstrates that while machine learning can provide some insights into earthquake magnitude prediction, **deep learning models like LSTM offer a more scalable and adaptable solution** for capturing the complex patterns of seismic activity.
 
 ## Future Improvements
 - Incorporate additional seismic features such as location coordinates and fault-line data.
